@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 업로드</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>이미지를 업로드하고 공유해 보세요.</h1>
+        
+        <div class="info">
+            jpg, png 파일만 업로드 가능합니다.
+        </div>
+        
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="upload-area">
+                <div class="upload-icon">📁</div>
+                <label for="file" class="file-label">파일 선택</label>
+                <input type="file" id="file" name="file" accept="image/jpeg,image/png" required>
+                <div class="file-name" id="fileName">선택된 파일 없음</div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>업로드하기</button>
+        </form>
+        
+        <a href="/" class="back-link">메인으로 돌아가기</a>
+    </div>
+    
+    <script>
+        const fileInput = document.getElementById('file');
+        const fileName = document.getElementById('fileName');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                fileName.textContent = this.files[0].name;
+                submitBtn.disabled = false;
+            } else {
+                fileName.textContent = '선택된 파일 없음';
+                submitBtn.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>

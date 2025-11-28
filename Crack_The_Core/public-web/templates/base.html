@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OneBank{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="user-info">
+                    {% if session.username %}
+                        <span>🔒 {{ session.username }}님 환영합니다</span>
+                    {% else %}
+                        <span>OneBank - 안전한 인터넷뱅킹</span>
+                    {% endif %}
+                </div>
+                <div class="links">
+                    {% if session.username %}
+                        {% if session.username in ['admin', 'ceo'] %}
+                            <a href="/admin/dashboard">관리자</a>
+                        {% endif %}
+                        <a href="/logout">로그아웃</a>
+                    {% else %}
+                        <a href="#">고객센터</a>
+                        <a href="#">보안센터</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <a href="/" class="logo">One<span>Bank</span></a>
+            <nav class="nav">
+                <a href="/">홈</a>
+                <a href="/products">상품</a>
+                <a href="/about">회사소개</a>
+                <a href="/contact">고객센터</a>
+                {% if not session.username %}
+                    <a href="/login" style="background: #008485; color: white; padding: 8px 20px; border-radius: 5px;">로그인</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>OneBank | 사업자등록번호: 145-62-43514 | 대표이사: 유원상</p>
+            <p>주소: 서울특별시 중구 통일로 120 | 고객센터: 1588-2100</p>
+            <p style="margin-top: 15px; font-size: 12px; color: #999;">
+                © 2025 OneBank. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

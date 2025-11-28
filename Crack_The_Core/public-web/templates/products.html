@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}금융상품 - OneBank{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="section-title">OneBank의 금융상품</h1>
+    
+    <div class="products-grid">
+        <div class="product-card">
+            <h3>One 올인원 예금</h3>
+            <p>기간: 1개월 ~ 36개월</p>
+            <p>금리: 연 3.5% ~ 4.2%</p>
+            <p style="margin-top: 15px; font-size: 13px; color: #666;">
+                목돈을 안전하게 굴리는 가장 기본적인 상품입니다.
+            </p>
+            <button class="btn" style="margin-top: 20px;">가입하기</button>
+        </div>
+        
+        <div class="product-card">
+            <h3>One 청년적금</h3>
+            <p>기간: 12개월 ~ 24개월</p>
+            <p>금리: 연 4.0% ~ 5.0%</p>
+            <p style="margin-top: 15px; font-size: 13px; color: #666;">
+                청년을 위한 특별 우대금리 적금상품입니다.
+            </p>
+            <button class="btn" style="margin-top: 20px;">가입하기</button>
+        </div>
+        
+        <div class="product-card">
+            <h3>One 투자펀드</h3>
+            <p>수익률: 연 5% ~ 15%</p>
+            <p>위험도: 중위험</p>
+            <p style="margin-top: 15px; font-size: 13px; color: #666;">
+                전문가가 관리하는 분산투자 펀드상품입니다.
+            </p>
+            <button class="btn" style="margin-top: 20px;">가입하기</button>
+        </div>
+        
+        <div class="product-card">
+            <h3>One 주택대출</h3>
+            <p>한도: 최대 5억원</p>
+            <p>금리: 연 3.8% ~ 4.5%</p>
+            <p style="margin-top: 15px; font-size: 13px; color: #666;">
+                내 집 마련을 위한 주택담보대출 상품입니다.
+            </p>
+            <button class="btn" style="margin-top: 20px;">상담하기</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

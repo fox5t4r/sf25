@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Challenge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>I❤️IMAGE</h1>
+        <p class="subtitle">사진 업로드, 설치 필요 없음, 완전히 무료</p>
+        
+        <div class="description">
+            <p>jpg, png 파일만 업로드 가능합니다.</p>
+            <p>사용자의 파일은 안전하게 관리됩니다.</p>
+        </div>
+        
+        <div class="buttons">
+            <a href="/upload" class="btn">파일 업로드</a>
+            <a href="/gallery" class="btn btn-secondary">갤러리 보기</a>
+        </div>
+    </div>
+</body>
+</html>

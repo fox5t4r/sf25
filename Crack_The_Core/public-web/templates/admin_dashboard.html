@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - OneBank{% endblock %}
+
+{% block content %}
+<style>
+    .dashboard-container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+    
+    .dashboard-header {
+        background: linear-gradient(135deg, #008485 0%, #00a651 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+    
+    .dashboard-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 32px;
+    }
+    
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .dashboard-card {
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        text-decoration: none;
+        color: #333;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+    
+    .card-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+    
+    .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #008485;
+    }
+    
+    .card-description {
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .logout-btn {
+        background: #dc3545;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+    }
+    
+    .logout-btn:hover {
+        background: #c82333;
+    }
+</style>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>OneBank Admin Dashboard</h1>
+        <p>환영합니다, {{ username }} 님!</p>
+    </div>
+    
+    <div class="dashboard-grid">
+        <a href="{{ url_for('ceo_todolist') }}" class="dashboard-card">
+            <div class="card-icon">📋</div>
+            <div class="card-title">CEO To-Do List</div>
+            <div class="card-description">
+                CEO에게 전달할 업무 메시지를 작성하고 관리합니다
+            </div>
+        </a>
+        
+        <div class="dashboard-card" style="opacity: 0.5; cursor: not-allowed;">
+            <div class="card-icon">👥</div>
+            <div class="card-title">사용자 관리</div>
+            <div class="card-description">
+                (개발 중...)
+            </div>
+        </div>
+        
+        <div class="dashboard-card" style="opacity: 0.5; cursor: not-allowed;">
+            <div class="card-icon">📊</div>
+            <div class="card-title">통계 보기</div>
+            <div class="card-description">
+                (개발 중...)
+            </div>
+        </div>
+    </div>
+    
+    <a href="{{ url_for('logout') }}" class="logout-btn">로그아웃</a>
+</div>
+{% endblock %}

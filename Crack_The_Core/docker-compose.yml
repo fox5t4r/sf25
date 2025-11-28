@@ -1,0 +1,54 @@
+services:
+  public-web:
+    build: ./public-web
+    container_name: nhbank-public
+    environment:
+      - DATABASE_PATH=/data/nhbank.db
+      - SECRET_KEY=${SECRET_KEY}
+      - INTERNAL_WEB_URL=http://internal-web:53215
+      - BOT_URL=http://ceo-bot:3000
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - CEO_PASSWORD=${CEO_PASSWORD}
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "53215:82"
+    volumes:
+      - db_data:/data
+    depends_on:
+      - internal-web
+      - ceo-bot
+    restart: unless-stopped
+
+  internal-web:
+    build: ./internal-web
+    container_name: nhbank-internal
+    environment:
+      - DATABASE_PATH=/data/nhbank.db
+      - SECRET_KEY=${SECRET_KEY}
+    networks:
+      - backend
+    volumes:
+      - db_data:/data
+    restart: unless-stopped
+
+  ceo-bot:
+    build: ./ceo-bot
+    container_name: nhbank-ceo-bot
+    environment:
+      - FLAG=${FLAG}
+      - CEO_PASSWORD=${CEO_PASSWORD}
+    networks:
+      - frontend
+    restart: unless-stopped
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+    internal: true
+
+volumes:
+  db_data:

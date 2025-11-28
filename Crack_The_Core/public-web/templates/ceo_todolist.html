@@ -1,0 +1,373 @@
+{% extends "base.html" %}
+
+{% block title %}CEO To-Do List - OneBank Admin{% endblock %}
+
+{% block content %}
+<style>
+    .todolist-container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+    
+    .todolist-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    .todolist-header h1 {
+        color: #008485;
+        margin: 0;
+        font-size: 28px;
+    }
+    
+    .back-btn {
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    
+    .back-btn:hover {
+        background: #5a6268;
+    }
+    
+    .add-todo-section {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+    }
+    
+    .add-todo-section h2 {
+        margin-top: 0;
+        color: #008485;
+    }
+    
+    .todo-form-group {
+        margin-bottom: 20px;
+    }
+    
+    .todo-form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .todo-form-group input,
+    .todo-form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    
+    .todo-form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+    
+    .submit-btn {
+        background: #008485;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    .submit-btn:hover {
+        background: #006e6f;
+    }
+    
+    .report-btn {
+        background: #dc3545;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+    
+    .report-btn:hover {
+        background: #c82333;
+    }
+    
+    .report-btn:disabled {
+        background: #6c757d;
+        cursor: not-allowed;
+    }
+    
+    .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    .todo-list {
+        display: grid;
+        gap: 20px;
+    }
+    
+    .todo-item {
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .todo-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .todo-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #008485;
+        margin: 0;
+    }
+    
+    .todo-meta {
+        font-size: 12px;
+        color: #999;
+    }
+    
+    .todo-content {
+        color: #333;
+        line-height: 1.6;
+    }
+    
+    .info-box-todo {
+        background: #e8f4f4;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    
+    .info-box-todo strong {
+        color: #008485;
+    }
+    
+    .alert {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+    }
+    
+    .alert-error {
+        background: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+    }
+    
+    .alert-info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border-left: 4px solid #17a2b8;
+    }
+    
+    .cooldown-timer {
+        font-weight: bold;
+        color: #dc3545;
+    }
+</style>
+
+<div class="todolist-container">
+    <div class="todolist-header">
+        <h1>CEO To-Do List</h1>
+        <a href="{{ url_for('admin_dashboard') }}" class="back-btn">← 대시보드로</a>
+    </div>
+    
+    <div class="info-box-todo">
+        <strong>안내:</strong> 메시지를 작성한 후 "CEO에게 보고" 버튼을 클릭하면 CEO가 확인합니다.
+    </div>
+    
+    <div class="add-todo-section">
+        <h2>New To-Do-List</h2>
+        
+        <div id="alert-container"></div>
+        
+        <form id="todoForm">
+            <div class="todo-form-group">
+                <label for="title">제목:</label>
+                <input type="text" id="title" name="title" required placeholder="예: 정기 회의 요청">
+            </div>
+            
+            <div class="todo-form-group">
+                <label for="content">내용:</label>
+                <textarea id="content" name="content" required placeholder="CEO에게 전달할 메시지를 입력하세요..."></textarea>
+            </div>
+            
+            <div class="btn-group">
+                <button type="submit" class="submit-btn">저장</button>
+                <button type="button" id="reportBtn" class="report-btn" onclick="reportToCEO()">
+                    CEO에게 보고
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <h2 style="margin-top: 40px; color: #008485;">전송된 메시지 목록</h2>
+    
+    <div class="todo-list" id="todoListContainer">
+    </div>
+</div>
+
+<script>
+// 쿨다운 관리
+let cooldown = {{ cooldown }};
+
+function updateReportButton() {
+    const btn = document.getElementById('reportBtn');
+    
+    if (cooldown > 0) {
+        btn.disabled = true;
+        btn.textContent = `${cooldown}초 후 재시도`;
+        cooldown--;
+        setTimeout(updateReportButton, 1000);
+    } else {
+        btn.disabled = false;
+        btn.textContent = 'CEO에게 보고';
+    }
+}
+
+// 초기 쿨다운 적용
+if (cooldown > 0) {
+    updateReportButton();
+}
+
+// Todo 데이터
+const todoData = [
+    {% for todo in todos %}
+    {
+        id: {{ todo['id'] }},
+        title: "{{ todo['title'] | js_escape }}",
+        content: "{{ todo['content'] | js_escape }}",
+        author: "{{ todo['author'] }}",
+        created_at: "{{ todo['created_at'] }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+function renderTodoList() {
+    const container = document.getElementById('todoListContainer');
+    
+    if (todoData.length === 0) {
+        container.innerHTML = `
+            <div class="todo-item" style="text-align: center; color: #999;">
+                <p>아직 작성된 메시지가 없습니다.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    
+    todoData.forEach(todo => {
+        html += `
+            <div class="todo-item" data-id="${todo.id}">
+                <div class="todo-item-header">
+                    <h3 class="todo-title">${todo.title}</h3>
+                    <span class="todo-meta">${todo.author} | ${todo.created_at}</span>
+                </div>
+                <div class="todo-content">${todo.content}</div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', renderTodoList);
+
+// 저장 (기존 기능)
+document.getElementById('todoForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+    const alertContainer = document.getElementById('alert-container');
+    
+    try {
+        const response = await fetch('/api/admin/add-todo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, content })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            alertContainer.innerHTML = '<div class="alert alert-success">메시지가 저장되었습니다! 이제 "CEO에게 보고" 버튼을 클릭하세요.</div>';
+            setTimeout(() => location.reload(), 1500);
+        } else {
+            alertContainer.innerHTML = `<div class="alert alert-error">${data.error}</div>`;
+        }
+    } catch (error) {
+        alertContainer.innerHTML = '<div class="alert alert-error">서버 오류가 발생했습니다</div>';
+    }
+});
+
+// CEO에게 보고
+async function reportToCEO() {
+    const alertContainer = document.getElementById('alert-container');
+    const btn = document.getElementById('reportBtn');
+    
+    btn.disabled = true;
+    btn.textContent = '요청 중...';
+    
+    try {
+        const response = await fetch('/api/report', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            alertContainer.innerHTML = '<div class="alert alert-success">CEO에게 보고되었습니다.</div>';
+            cooldown = 30;
+            updateReportButton();
+        } else {
+            alertContainer.innerHTML = `<div class="alert alert-error">${data.error}</div>`;
+            if (data.cooldown) {
+                cooldown = data.cooldown;
+                updateReportButton();
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'CEO에게 보고';
+            }
+        }
+    } catch (error) {
+        alertContainer.innerHTML = '<div class="alert alert-error">서버 연결 오류</div>';
+        btn.disabled = false;
+        btn.textContent = 'CEO에게 보고';
+    }
+}
+</script>
+{% endblock %}

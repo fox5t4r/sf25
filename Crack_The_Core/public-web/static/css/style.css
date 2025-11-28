@@ -1,0 +1,475 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-top {
+    background: #f8f8f8;
+    padding: 8px 0;
+    font-size: 13px;
+}
+
+.header-top .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-top .links a {
+    color: #666;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.header-top .links a:hover {
+    color: #008485;
+}
+
+.header-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #008485;
+    text-decoration: none;
+}
+
+.logo span {
+    font-weight: 300;
+}
+
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+}
+
+.nav a:hover {
+    color: #008485;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #008485 0%, #00a651 100%);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.95;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 30px;
+}
+
+.product-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.product-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.product-card .btn {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #008485;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn:hover {
+    background: #006e6f;
+}
+
+.btn-secondary {
+    background: #00a651;
+}
+
+.btn-secondary:hover {
+    background: #008c44;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #008485;
+}
+
+.info-box {
+    background: #f5f9f9;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.info-box h3 {
+    color: #008485;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.info-box p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+.success-box {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.error-box {
+    background: #ffebee;
+    border-left: 4px solid #f44336;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.footer {
+    background: #2c2c2c;
+    color: #999;
+    padding: 40px 20px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer p {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 40px;
+    background: white;
+    border: 1px solid #e0e0e0;
+}
+
+.login-container h2 {
+    text-align: center;
+    color: #008485;
+    margin-bottom: 30px;
+}
+
+/* 메인 섹션 */
+.main-section {
+    background: #fff;
+    padding: 40px 0;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+    align-items: start;
+}
+
+/* 슬라이더 */
+.slider-wrapper {
+    position: relative;
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    background: #f8f8f8;
+    min-height: 320px;
+}
+
+.slide {
+    display: none;
+    padding: 50px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slide.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    opacity: 1;
+}
+
+.slide-content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.slide-content p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.slide-link {
+    display: inline-block;
+    color: #008485;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.slide-link:hover {
+    text-decoration: underline;
+}
+
+.slide-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.placeholder-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.slider-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-btn:hover {
+    color: #008485;
+}
+
+.slider-counter {
+    font-size: 15px;
+    color: #333;
+}
+
+.slider-counter .current {
+    font-weight: 700;
+}
+
+/* 빠른 메뉴 */
+.quick-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quick-btn {
+    display: block;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    transition: background 0.2s;
+}
+
+.quick-btn.primary {
+    background: #008485;
+}
+
+.quick-btn.primary:hover {
+    background: #006e6f;
+}
+
+.quick-btn.secondary {
+    background: #00a651;
+}
+
+.quick-btn.secondary:hover {
+    background: #008c44;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quick-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    background: #f8f8f8;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.quick-link:hover {
+    background: #e8f4f4;
+}
+
+.quick-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.quick-text {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .quick-btn {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide.active {
+        grid-template-columns: 1fr;
+        padding: 30px;
+    }
+    
+    .slide-image {
+        display: none;
+    }
+    
+    .slider-controls {
+        left: 30px;
+    }
+}

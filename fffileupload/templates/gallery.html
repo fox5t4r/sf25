@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갤러리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">갤러리</h1>
+        
+        <div class="nav-links">
+            <a href="/">메인</a>
+            <a href="/upload">업로드</a>
+        </div>
+        
+        {% if files %}
+        <div class="gallery">
+            {% for file in files %}
+            <div class="gallery-item">
+                <div class="image-container">
+                    {% if file.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')) %}
+                        <img src="/gallery/{{ file }}" alt="{{ file }}" onerror="this.parentElement.innerHTML='<div class=\'file-icon\'>📄</div>'">
+                    {% else %}
+                        <div class="file-icon">📄</div>
+                    {% endif %}
+                </div>
+                <div class="file-info">
+                    <div class="file-name">{{ file }}</div>
+                    <a href="/gallery/{{ file }}" class="view-link">열기</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-message">
+            업로드된 사진이 없습니다.<br>
+            첫 번째 사진을 업로드해보세요!
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

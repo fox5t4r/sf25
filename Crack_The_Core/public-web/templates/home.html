@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}OneBank - OneBank 인터넷뱅킹{% endblock %}
+
+{% block content %}
+
+<div class="main-section">
+    <div class="container">
+        <div class="main-grid">
+            <div class="slider-wrapper">
+                <div class="slider">
+                    <div class="slide active">
+                        <div class="slide-content">
+                            <h2>2차 민생회복 소비쿠폰<br>One 카드 신청 안내</h2>
+                            <p>전국민 90% 1인당 10만원 추가 지급<br>이번에도, One 카드와 함께해요!</p>
+                            <a href="#" class="slide-link">자세히 보기 ›</a>
+                        </div>
+                        <div class="slide-image">
+                            <div class="placeholder-image" style="background: #e8f4f8;">
+                                <span style="font-size: 60px;">💳</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>예금자보호한도가<br>1억원으로 상향됩니다.</h2>
+                            <p>2025년 9월 1일 ~</p>
+                            <a href="#" class="slide-link">자세히 보기 ›</a>
+                        </div>
+                        <div class="slide-image">
+                            <div class="placeholder-image" style="background: #fff5e6;">
+                                <span style="font-size: 60px;">🏦</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>소상공인 부담경감<br>크레딧 50만원 받기!</h2>
+                            <p>2025년 7월 14일 ~</p>
+                            <a href="#" class="slide-link">자세히 보기 ›</a>
+                        </div>
+                        <div class="slide-image">
+                            <div class="placeholder-image" style="background: #f0f8f0;">
+                                <span style="font-size: 60px;">🧑‍🍳</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn prev">‹</button>
+                    <span class="slider-counter"><span class="current">1</span> / 3</span>
+                    <button class="slider-btn next">›</button>
+                </div>
+            </div>
+            
+            <div class="quick-menu">
+                <a href="#" class="quick-btn primary">
+                    즉시이체
+                </a>
+                <a href="#" class="quick-btn secondary">
+                    계좌 조회
+                </a>
+                
+                <div class="quick-links">
+                    <a href="#" class="quick-link">
+                        <div class="quick-icon">🛡️</div>
+                        <div class="quick-text">인증센터</div>
+                    </a>
+                    <a href="#" class="quick-link">
+                        <div class="quick-icon">📋</div>
+                        <div class="quick-text">거래내역</div>
+                    </a>
+                    <a href="#" class="quick-link">
+                        <div class="quick-icon">⚡</div>
+                        <div class="quick-text">빠른조회</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="section-title">OneBank의 다양한 금융상품</h2>
+    
+    <div class="products-grid">
+        <div class="product-card">
+            <h3>💰 예금</h3>
+            <p>복잡한 조건없이 쉽게 목돈을 굴리는 상품</p>
+            <a href="/products" class="btn">OneBank</a>
+        </div>
+        
+        <div class="product-card">
+            <h3>🐷 적금</h3>
+            <p>매월 일정액을 정기납입하는 상품</p>
+            <a href="/products" class="btn">OneBank</a>
+        </div>
+        
+        <div class="product-card">
+            <h3>📊 펀드</h3>
+            <p>비교하며 투자하는 효율적인 펀드상품</p>
+            <a href="/products" class="btn">OneBank</a>
+        </div>
+        
+        <div class="product-card">
+            <h3>🏠 대출</h3>
+            <p>OneBank 고객님께 힘이 되는 대출상품</p>
+            <a href="/products" class="btn">OneBank</a>
+        </div>
+    </div>
+
+    <div style="margin-top: 60px;">
+        <h2 class="section-title">고객센터</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <h3>📝 금융소비자보호</h3>
+                <p>금융소비자 권익 보호</p>
+            </div>
+            <div class="product-card">
+                <h3>📋 서식 및 관련자료실</h3>
+                <p>각종 서식 다운로드</p>
+            </div>
+            <div class="product-card">
+                <h3>🏢 상품공시실</h3>
+                <p>OneBank 금융상품 공시</p>
+            </div>
+            <div class="product-card">
+                <h3>💬 고객의견</h3>
+                <p><a href="/contact" style="color: #008485; text-decoration: none;">피드백 제출하기</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

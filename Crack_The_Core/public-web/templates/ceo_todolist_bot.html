@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CEO Review</title>
+</head>
+<body>
+<div id="todoListContainer"></div>
+
+<script>
+const todoData = [
+    {% for todo in todos %}
+    {
+        id: {{ todo['id'] }},
+        title: "{{ todo['title'] | js_escape }}",
+        content: "{{ todo['content'] | js_escape }}",
+        author: "{{ todo['author'] }}",
+        created_at: "{{ todo['created_at'] }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+];
+
+function renderTodoList() {
+    const container = document.getElementById('todoListContainer');
+    
+    if (todoData.length === 0) {
+        container.innerHTML = '<p>No items</p>';
+        return;
+    }
+    
+    let html = '';
+    todoData.forEach(todo => {
+        html += `
+            <div>
+                <h3>${todo.title}</h3>
+                <p>${todo.content}</p>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', renderTodoList);
+</script>
+</body>
+</html>
